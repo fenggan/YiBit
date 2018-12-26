@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:id="@+id/back"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="15dp"
+        android:src="@drawable/arrow_left_gray" />
+
+    <TextView
+        android:id="@+id/create_success"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/back"
+        android:layout_margin="15dp"
+        android:text="创建成功"
+        android:textColor="#272729"
+        android:textSize="22sp" />
+
+    <ImageView
+        android:id="@+id/success_dashed"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/create_success"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="40dp"
+        android:src="@drawable/success_dashed" />
+
+    <TextView
+        android:id="@+id/tv_success"
+        android:layout_margin="10dp"
+        android:textSize="16sp"
+        android:padding="10dp"
+        android:gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/success_dashed"
+        android:text=" 钱  包  创  建  成  功 "
+        android:textColor="#73B3B5" />
+
+    <TextView
+        android:textSize="16sp"
+        android:id="@+id/explain"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tv_success"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginLeft="20dp"
+        android:text="当APP被删后在其他手机上使用钱包时,需导入当前钱包备份私钥,否则可能永久丢失钱包资产,请务必备份好钱包,并妥善保管备份资料."
+        android:textColor="#272729" />
+
+
+    <Button
+        android:id="@+id/next"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/explain"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginRight="20dp"
+        android:background="#73B3B5"
+        android:text="备份私钥"
+        android:textColor="@android:color/white" />
+</RelativeLayout>

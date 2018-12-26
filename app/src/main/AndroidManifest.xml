@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.example.administrator.yibit">
+
+
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <uses-permission android:name="android.permission.CAMERA"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+
+
+    <application
+        android:name="com.example.administrator.yibit.MyApplication"
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <activity android:name="com.example.administrator.yibit.view.activity.FirstInActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <activity android:name="com.example.administrator.yibit.MainActivity"
+            android:launchMode="singleTask">
+        </activity>
+        <activity android:name="com.example.administrator.yibit.view.activity.CreateUserActivity"></activity>
+        <activity android:name="com.example.administrator.yibit.view.activity.DisclaimerActivity"></activity>
+        <activity android:name="com.example.administrator.yibit.view.activity.CreatePasswordActivity"></activity>
+        <activity android:name="com.example.administrator.yibit.view.activity.CreateSuccessActivity"></activity>
+        <activity android:name="com.example.administrator.yibit.view.activity.BackupsHideActivity"></activity>
+        <activity android:name="com.example.administrator.yibit.view.activity.BackupsShowActivity"></activity>
+        <activity android:name="com.example.administrator.yibit.view.activity.WalletManagerActivity"></activity>
+        <activity android:name="com.example.administrator.yibit.view.activity.TransactionRecordActivity"></activity>
+        <activity android:name="com.example.administrator.yibit.view.activity.RecordDetailActivity"></activity>
+        <activity android:name="com.example.administrator.yibit.view.activity.ImportWalletActivitiy"></activity>
+        <activity android:name="com.example.administrator.yibit.view.activity.WalletActivity"></activity>
+        <activity android:name="com.example.administrator.yibit.view.activity.UpdatePasswordActivity"></activity>
+        <activity android:name="com.example.administrator.yibit.view.activity.AssetsDetailActivity"></activity>
+        <activity android:name="com.example.administrator.yibit.view.activity.RechargeActivity"></activity>
+        <activity android:name="com.example.administrator.yibit.view.activity.RechargeAddressActivity"></activity>
+        <activity android:name="com.example.administrator.yibit.view.activity.CashWithdrawalActivity"></activity>
+        <activity android:name="com.example.administrator.yibit.view.activity.TransferActivity"></activity>
+        <activity android:name="com.example.administrator.yibit.view.activity.TransferSuccessActivity"></activity>
+    </application>
+</manifest>

@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <ImageView
+            android:id="@+id/back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="15dp"
+            android:src="@drawable/arrow_left_gray" />
+
+        <TextView
+            android:id="@+id/disclaimer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/back"
+            android:layout_margin="15dp"
+            android:text="免责申明"
+            android:textColor="#272729"
+            android:textSize="22sp" />
+
+        <TextView
+            android:id="@+id/disclaimer_one"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/disclaimer"
+            android:layout_margin="15dp"
+            android:text="@string/disclaimer_one"
+            android:textColor="#555555"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/disclaimer_two"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/disclaimer_one"
+            android:layout_margin="15dp"
+            android:text="@string/disclaimer_two"
+            android:textColor="#000000" />
+
+        <TextView
+            android:id="@+id/disclaimer_three"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/disclaimer_two"
+            android:layout_margin="15dp"
+            android:text="@string/disclaimer_three"
+            android:textColor="#555555" />
+
+        <TextView
+            android:id="@+id/disclaimer_four"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/disclaimer_three"
+            android:layout_margin="15dp"
+            android:text="@string/disclaimer_four"
+            android:textColor="#555555" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/disclaimer_four"
+            android:layout_margin="15dp"
+            android:text="@string/disclaimer_five"
+            android:textColor="#555555" />
+    </LinearLayout>
+</ScrollView>

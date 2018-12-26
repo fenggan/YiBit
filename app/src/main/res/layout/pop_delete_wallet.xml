@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp"
+        android:text="确认解锁并删除此钱包,此操作不可撤销,确认删除吗?"
+        android:textColor="#272729" />
+
+    <EditText
+        android:id="@+id/password"
+        android:hint="请输入钱包密码"
+        android:textSize="14sp"
+        android:layout_margin="20dp"
+        android:textColor="#D6D6D6"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:id="@+id/tip"
+        android:textColor="#E3675C"
+        android:text="*密码输入错误"
+        android:layout_width="match_parent"
+        android:layout_margin="20dp"
+        android:visibility="gone"
+        android:layout_height="wrap_content" />
+
+    <Button
+        android:id="@+id/delete"
+        android:layout_margin="20dp"
+        android:background="@drawable/shape_gradient_blue"
+        android:textColor="#FFFFFF"
+        android:textSize="16sp"
+        android:text="确认删除"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+</LinearLayout>

@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:id="@+id/back"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="15dp"
+        android:src="@drawable/arrow_left_gray" />
+
+    <TextView
+        android:id="@+id/transfer_success"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/back"
+        android:layout_margin="15dp"
+        android:text="转账成功"
+        android:textColor="#272729"
+        android:textSize="22sp" />
+
+    <ImageView
+        android:id="@+id/image"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/transfer_success"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="30dp"
+        android:src="@drawable/success_dashed" />
+
+    <TextView
+        android:id="@+id/success"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/image"
+        android:layout_margin="5dp"
+        android:gravity="center"
+        android:text="交 易 成 功"
+        android:textColor="#272729"
+        android:textSize="16sp" />
+
+    <TextView
+        android:id="@+id/your_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/success"
+        android:layout_margin="5dp"
+        android:gravity="center"
+        android:text="已经转账至 yourName"
+        android:textColor="#272729"
+        android:textSize="16sp" />
+
+    <TextView
+        android:id="@+id/number"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/your_name"
+        android:layout_margin="5dp"
+        android:gravity="center"
+        android:text="JRC"
+        android:textColor="#272729"
+        android:textSize="16sp" />
+
+    <Button
+        android:text="完成"
+        android:id="@+id/complete"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/number"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="40dp"
+        android:layout_marginRight="15dp"
+        android:background="@drawable/shape_gradient_blue"
+        android:textColor="#FFFFFF"
+        android:textSize="16sp" />
+</RelativeLayout>

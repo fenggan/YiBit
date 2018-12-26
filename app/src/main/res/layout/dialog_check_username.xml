@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <TextView
+        android:visibility="invisible"
+        android:layout_width="match_parent"
+        android:layout_height="40dp" />
+
+    <ProgressBar
+        android:indeterminateDrawable="@drawable/progress_style"
+        android:id="@+id/dialog_pb"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:indeterminateTint="@android:color/darker_gray" />
+
+    <TextView
+        android:id="@+id/dialog_tv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:gravity="center"
+        android:padding="10dp"
+        android:text="正在检查账户名"
+        android:textColor="#555555"
+        android:textSize="16sp" />
+</LinearLayout>

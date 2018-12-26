@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/root"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:id="@+id/back"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="15dp"
+        android:src="@drawable/arrow_left_gray" />
+
+    <TextView
+        android:id="@+id/username"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/back"
+        android:layout_margin="15dp"
+        android:textColor="#272729"
+        android:textSize="22sp" />
+
+    <TextView
+        android:id="@+id/username_one"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/username"
+        android:layout_marginLeft="15dp"
+        android:gravity="left"
+        android:padding="10dp"
+        android:text="钱包账号"
+        android:textColor="#272729"
+        android:textSize="16sp" />
+
+    <TextView
+        android:id="@+id/username_two"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/username"
+        android:layout_alignBaseline="@+id/username_one"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="15dp"
+        android:layout_toRightOf="@+id/username_one"
+        android:gravity="right"
+        android:padding="10dp"
+        android:textColor="#A5A5A5"
+        android:textSize="14sp" />
+
+    <TextView
+        android:id="@+id/password"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/username_one"
+        android:layout_margin="15dp"
+        android:drawableRight="@drawable/arrow_right_gray"
+        android:gravity="left"
+        android:padding="10dp"
+        android:text="修改密码"
+        android:textColor="#272729"
+        android:textSize="16sp" />
+
+    <Button
+        android:id="@+id/backups"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/remove_wallet"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginBottom="10dp"
+        android:background="@drawable/shape_gradient_blue"
+        android:text="备份私钥"
+        android:textColor="#FFFFFF" />
+
+    <Button
+        android:id="@+id/remove_wallet"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginBottom="20dp"
+        android:background="@drawable/shape_solid_blue"
+        android:text="删除钱包"
+        android:textColor="#73B3B5" />
+</RelativeLayout>

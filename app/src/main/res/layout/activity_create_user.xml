@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:id="@+id/back"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="15dp"
+        android:src="@drawable/arrow_left_gray" />
+
+    <TextView
+        android:id="@+id/create_user"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/back"
+        android:layout_margin="15dp"
+        android:text="创建一个账户"
+        android:textColor="#272729"
+        android:textSize="22sp" />
+
+    <EditText
+        android:id="@+id/username"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/create_user"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginRight="15dp"
+        android:background="@null"
+        android:hint="输入字母加数字的组合"
+        android:textColor="#D6D6D6"
+        android:textColorHint="#D6D6D6"
+        android:textSize="18sp" />
+
+    <TextView
+        android:id="@+id/tip"
+        android:visibility="gone"
+        android:textColor="@android:color/holo_red_dark"
+        android:layout_margin="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:id="@+id/explain"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/username"
+        android:layout_margin="20dp"
+        android:text="      当你创建一个账户时，一个钱包也同时被创建，请输入你期望的账户名，这个账户名将在区块链上进行注册  ，并将作为你的身份标识。"
+        android:textColor="#272729" />
+
+    <CheckBox
+        android:id="@+id/choose"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/explain"
+        android:layout_marginLeft="90dp" />
+
+    <TextView
+        android:id="@+id/agree"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/explain"
+        android:layout_alignBaseline="@+id/choose"
+        android:layout_toRightOf="@+id/choose"
+        android:textColor="#272729" />
+
+    <Button
+        android:id="@+id/next"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/choose"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="20dp"
+        android:background="@drawable/shape_gradient_blue"
+        android:text="下一步"
+        android:textColor="#FFFFFF" />
+</RelativeLayout>

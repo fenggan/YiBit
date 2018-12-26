@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/root"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="15dp"
+            android:src="@drawable/arrow_left_gray" />
+
+        <TextView
+            android:id="@+id/transfer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/back"
+            android:layout_margin="15dp"
+            android:text="JRC转账"
+            android:textColor="#272729"
+            android:textSize="22sp" />
+
+        <TextView
+            android:id="@+id/username_one"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/transfer"
+            android:layout_margin="15dp"
+            android:padding="10dp"
+            android:textColor="#272729"
+            android:textSize="16sp" />
+
+        <EditText
+            android:id="@+id/username_two"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/username_one"
+            android:layout_margin="15dp"
+            android:hint="收款人用户名"
+            android:padding="10dp"
+            android:textColor="#272729"
+            android:textColorHint="#D6D6D6"
+            android:textSize="16sp" />
+
+        <EditText
+            android:id="@+id/number"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/username_two"
+            android:layout_margin="15dp"
+            android:hint="填写JRC数量"
+            android:padding="10dp"
+            android:textColor="#272729"
+            android:textColorHint="#D6D6D6"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/usable"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/number"
+            android:layout_margin="15dp"
+            android:padding="10dp"
+            android:text="可用JRC"
+            android:textColor="#A5A5A5"
+            android:textColorHint="#D6D6D6"
+            android:textSize="16sp" />
+
+        <EditText
+            android:id="@+id/market"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/usable"
+            android:layout_margin="15dp"
+            android:hint="备注(Memo)"
+            android:lines="4"
+            android:padding="5dp"
+            android:textColor="#272729"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/poundage"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/market"
+            android:layout_margin="15dp"
+            android:text="手续费JRC"
+            android:textColor="#272729"
+            android:textSize="16sp" />
+
+        <Button
+            android:id="@+id/next"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/poundage"
+            android:layout_margin="15dp"
+            android:background="@drawable/shape_gradient_blue"
+            android:text="下一步"
+            android:textColor="#FFFFFF"
+            android:textSize="16sp" />
+    </RelativeLayout>
+</ScrollView>

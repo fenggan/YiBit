@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="15dp"
+            android:src="@drawable/arrow_left_gray" />
+
+        <TextView
+            android:id="@+id/cash"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/back"
+            android:layout_margin="15dp"
+            android:text="JRC提现"
+            android:textColor="#272729"
+            android:textSize="22sp" />
+
+        <TextView
+            android:id="@+id/tip_one"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/cash"
+            android:layout_margin="15dp"
+            android:text="提现地址"
+            android:textColor="#272729"
+            android:textSize="14sp" />
+
+        <EditText
+            android:id="@+id/address"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tip_one"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:background="@drawable/shape_border_gray"
+            android:drawableRight="@drawable/scan"
+            android:hint="请输入或长按粘贴地址"
+            android:padding="10dp"
+            android:textColorHint="#D6D6D6"
+            android:textSize="16sp" />
+
+        <LinearLayout
+            android:id="@+id/tip_two"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/address"
+            android:layout_margin="15dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="提币数量"
+                android:textColor="#272729"
+                android:textSize="14sp" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="right"
+                android:text="可用:  JRC"
+                android:textColor="#73B3B5"
+                android:textSize="16sp" />
+        </LinearLayout>
+
+        <EditText
+            android:id="@+id/number"
+            android:inputType="numberSigned"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tip_two"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:background="@drawable/shape_border_gray"
+            android:drawableRight="@drawable/jrc"
+            android:hint="请输入需要提取的数量"
+            android:padding="10dp"
+            android:textColorHint="#D6D6D6"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/tip_three"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/number"
+            android:layout_margin="15dp"
+            android:text="备注消息"
+            android:textColor="#272729"
+            android:textSize="14sp" />
+
+        <EditText
+            android:id="@+id/market_msg"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tip_three"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:background="@drawable/shape_border_gray"
+            android:hint="备注消息(Memo)或标签(Tag)"
+            android:padding="10dp"
+            android:textColorHint="#D6D6D6"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/min"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/market_msg"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginRight="15dp"
+            android:textColor="#A5A5A5"
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/poundage_one"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/min"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginRight="15dp"
+            android:textColor="#A5A5A5"
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/poundage_two"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/poundage_one"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginRight="15dp"
+            android:textColor="#A5A5A5"
+            android:textSize="14sp" />
+
+        <ImageView
+            android:id="@+id/image"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/poundage_two"
+            android:layout_margin="20dp"
+            android:src="@drawable/tip" />
+
+        <TextView
+            android:id="@+id/describe"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/poundage_two"
+            android:layout_marginTop="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_toRightOf="@+id/image"
+            android:text="为了保障您的资产安全,我们可能会对您的提币操作进行人工审核,请耐心等待."
+            android:textColor="#272729"
+            android:textSize="14sp" />
+
+        <LinearLayout
+            android:id="@+id/import_number"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/describe"
+            android:layout_margin="15dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="到账数量"
+                android:textColor="#A5A5A5"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/total_number"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="right"
+                android:textColor="#272729"
+                android:textSize="16sp" />
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/commit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/import_number"
+            android:layout_margin="15dp"
+            android:background="@drawable/shape_gradient_blue"
+            android:text="提币" />
+    </RelativeLayout>
+</ScrollView>

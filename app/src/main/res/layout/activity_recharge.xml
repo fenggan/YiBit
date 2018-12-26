@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:id="@+id/back"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="15dp"
+        android:src="@drawable/arrow_left_gray" />
+
+    <TextView
+        android:id="@+id/recharge"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/back"
+        android:layout_margin="15dp"
+        android:text="JRC充值"
+        android:textColor="#272729"
+        android:textSize="22sp" />
+
+    <TextView
+        android:id="@+id/tip"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:gravity="center"
+        android:text="重要提示"
+        android:textColor="#272729"
+        android:textSize="18sp" />
+
+    <TextView
+        android:id="@+id/tip_detail"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tip"
+        android:layout_marginLeft="60dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="60dp"
+        android:layout_marginBottom="10dp"
+        android:padding="10dp"
+        android:text="JPC充币时, 同时需要充币地址和备注消息,如
+        果未遵守正确的步骤,币会丢失!"
+        android:textColor="#A5A5A5"
+        android:textSize="14sp" />
+
+    <Button
+        android:id="@+id/sure"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tip_detail"
+        android:layout_centerHorizontal="true"
+        android:background="@drawable/shape_cornor_red"
+        android:text="确定"
+        android:textColor="#FFFFFF"
+        android:textSize="16sp" />
+</RelativeLayout>
