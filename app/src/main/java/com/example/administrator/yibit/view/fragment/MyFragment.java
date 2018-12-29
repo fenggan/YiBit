@@ -10,7 +10,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-
 import com.example.administrator.yibit.R;
 import com.example.administrator.yibit.view.activity.TransactionRecordActivity;
 import com.example.administrator.yibit.view.activity.WalletManagerActivity;

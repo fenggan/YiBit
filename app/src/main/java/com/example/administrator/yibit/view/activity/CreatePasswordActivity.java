@@ -8,17 +8,14 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import com.example.administrator.yibit.R;
-import com.example.administrator.yibit.bean.PrivateKeyBean;
-
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
-
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import cy.agorise.graphenej.BIP39;
 
 public class CreatePasswordActivity extends AppCompatActivity {
     @BindView(R.id.password_one)
@@ -56,8 +53,9 @@ public class CreatePasswordActivity extends AppCompatActivity {
                 }
                 if(one.equals(two)){
                     tip.setVisibility(View.GONE);
-                    //TODO 请求:密码存储,发送密钥
-//                    EventBus.getDefault().post(new PrivateKeyBean(""));
+                    BIP39 bip39=new BIP39("0",one);
+//                    bip39.getPrivateKey().getPrivKey().toString();
+
                     startActivity(new Intent(this,CreateSuccessActivity.class));
                 }else{
                     tip.setVisibility(View.VISIBLE);

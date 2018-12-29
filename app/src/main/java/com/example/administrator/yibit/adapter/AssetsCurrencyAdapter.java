@@ -6,14 +6,11 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.administrator.yibit.R;
-import com.example.administrator.yibit.bean.SlideBean;
-
-import org.w3c.dom.Text;
+import com.example.administrator.yibit.bean.AssetsCurrencyBean;
 
 import java.util.List;
 

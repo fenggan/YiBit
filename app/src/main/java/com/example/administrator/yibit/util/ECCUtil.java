@@ -10,6 +10,7 @@ import java.security.SecureRandom;
 import java.security.Security;
 import java.security.interfaces.ECPrivateKey;
 import java.security.interfaces.ECPublicKey;
+import java.security.spec.ECGenParameterSpec;
 import java.security.spec.PKCS8EncodedKeySpec;
 import java.security.spec.X509EncodedKeySpec;
 
@@ -18,16 +19,14 @@ import javax.crypto.Cipher;
 public class ECCUtil {
     static {
         Security.addProvider(new org.bouncycastle.jce.provider.BouncyCastleProvider());
-        for (String s : Security.getAlgorithms("KeyPairGenerator")) {
-            Log.i("RxAndroid", s);
-        }
     }
 
     //生成秘钥对
     public static KeyPair getKeyPair() throws Exception {
         Security.addProvider(new org.bouncycastle.jce.provider.BouncyCastleProvider());
         KeyPairGenerator keyPairGenerator = KeyPairGenerator.getInstance("EC", "BC");
-        keyPairGenerator.initialize(256, new SecureRandom());
+        ECGenParameterSpec spec=new ECGenParameterSpec("secp256k1");
+        keyPairGenerator.initialize(spec, new SecureRandom());
         KeyPair keyPair = keyPairGenerator.generateKeyPair();
         return keyPair;
     }
@@ -37,7 +36,6 @@ public class ECCUtil {
         ECPublicKey publicKey = (ECPublicKey) keyPair.getPublic();
         byte[] bytes = publicKey.getEncoded();
         return Base58.encode(bytes);
-//        return new String(bytes);
 //        return AESUtil.byte2Base64(bytes);
     }
 
@@ -47,7 +45,6 @@ public class ECCUtil {
         ECPrivateKey privateKey = (ECPrivateKey) keyPair.getPrivate();
         byte[] bytes = privateKey.getEncoded();
         return Base58.encode(bytes);
-//        return new String(bytes);
 //        return AESUtil.byte2Base64(bytes);
     }
 

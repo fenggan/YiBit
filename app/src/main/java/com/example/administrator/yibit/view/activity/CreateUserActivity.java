@@ -3,14 +3,14 @@ package com.example.administrator.yibit.view.activity;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.text.SpannableStringBuilder;
 import android.text.Spanned;
-import android.text.TextUtils;
 import android.text.style.ForegroundColorSpan;
-import android.util.Base64;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -22,39 +22,16 @@ import com.example.administrator.yibit.Constact;
 import com.example.administrator.yibit.R;
 import com.example.administrator.yibit.bean.CreateUserNameBean;
 import com.example.administrator.yibit.http.RetrofitUtils;
-import com.example.administrator.yibit.util.AESUtil;
-import com.example.administrator.yibit.util.Base58;
-import com.example.administrator.yibit.util.ECCUtil;
 import com.google.gson.Gson;
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 import java.io.IOException;
-import java.security.AlgorithmParameters;
-import java.security.InvalidKeyException;
-import java.security.Key;
-import java.security.KeyFactory;
-import java.security.KeyPair;
-import java.security.KeyPairGenerator;
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
-import java.security.PrivateKey;
-import java.security.PublicKey;
-import java.security.Signature;
-import java.security.SignatureException;
-import java.security.interfaces.DSAPrivateKey;
-import java.security.interfaces.DSAPublicKey;
-import java.security.interfaces.ECPrivateKey;
-import java.security.interfaces.ECPublicKey;
-import java.security.interfaces.RSAPrivateKey;
-import java.security.interfaces.RSAPublicKey;
-import java.security.spec.InvalidKeySpecException;
-import java.security.spec.PKCS8EncodedKeySpec;
-import java.security.spec.X509EncodedKeySpec;
-
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import cy.agorise.graphenej.Address;
+import cy.agorise.graphenej.BrainKey;
 import io.reactivex.Observer;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
@@ -91,7 +68,10 @@ public class CreateUserActivity extends AppCompatActivity {
         EventBus.getDefault().register(this);
         init();
         initView();
-        jdkDSA();
+        aaa();
+    }
+    private void aaa(){
+
     }
 
     private void init() {
@@ -112,39 +92,16 @@ public class CreateUserActivity extends AppCompatActivity {
                 if (choose.isChecked()) {
                     String temp = username.getText().toString().trim();
                     if (temp.length() != 0) {
-                        if (temp.matches("^(?![^a-zA-Z]+$)(?!\\\\D+$).{8,16}$")) {
+                        if (temp.matches("^[a-zA-Z][0-9a-zA-Z]{7,16}$")) {
                             showAlertDialog();
                             try {
-                                KeyPair pairOne = ECCUtil.getKeyPair();
-                                String publicKeyOne = ECCUtil.getPublicKey(pairOne);
-                                String privateKeyOne=ECCUtil.getPrivateKey(pairOne);
-                                KeyPair pairTwo = ECCUtil.getKeyPair();
-                                String privateKeyTwo=ECCUtil.getPrivateKey(pairTwo);
-                                String publicKeyTwo = ECCUtil.getPublicKey(pairTwo);
-                                Log.i("RxAndroid", publicKeyOne + "-------");
-                                Log.i("RxAndroid", publicKeyTwo + "-------");
-                                Log.i("RxAndroid", privateKeyTwo + "-------");
-                                Log.i("RxAndroid", privateKeyOne + "-------");
-                                Log.i("RxAndroid", pairOne.getPrivate().toString() + "-------");
-                                CreateUserNameBean bean = new CreateUserNameBean();
-                                bean.setName(temp);
-                                bean.setOwner_key(publicKeyOne);
-                                bean.setActive_key(publicKeyOne);
-                                bean.setMemo_key(publicKeyTwo);
-                                bean.setRefcode("");
-                                bean.setReferrer("");
-                                Gson gson = new Gson().newBuilder().serializeNulls().create();
-                                String json = gson.toJson(bean);
-                                String aa="{\"active_key\":\"JRC8AFykCLXKmURs5WDdAR4byKQ5HQKuXEGNuwKE3cofmqXyy3YJ8\",\"memo_key\":\"JRC8AFykCLXKmURs5WDdAR4byKQ5HQKuXEGNuwKE3cofmqXyy3YJ8\",\"name\":\"jjjj111122\",\"owner_key\":\"JRC7diFG1z7JwvXZprNwAN53a92jvW67P2kCYDTXKGjL4qh9GRe1X\",\"refcode\":\"\",\"referrer\":\"\"}";
-                                Log.i("RxAndroid", aa);
-                                Log.i("RxAndroid", json);
-                                test(aa);
-//                                CheckUserName(aa);
+                                CheckUserName2(getJson(temp));
+//                                CheckUserName(getJson(temp));
                             } catch (Exception e) {
                                 e.printStackTrace();
                             }
                         } else {
-                            Toast.makeText(this, "账户名由大小写字母、数字组成。", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(this, "账户名由8-16位大小写字母、数字组成，且由字母开头", Toast.LENGTH_SHORT).show();
                         }
                     } else {
                         Toast.makeText(this, "请输入账号！", Toast.LENGTH_SHORT).show();
@@ -161,77 +118,33 @@ public class CreateUserActivity extends AppCompatActivity {
                 break;
         }
     }
-
-    //DSA
-    public static void jdkDSA() {
-        String str = "hello";
-        String strs= ",M���v�N9ٳ�\u001D��\u001E�����\u0019?D\u000BY�}\u001C<a";
-        // 1. 初始化 秘钥
-        try {
-            KeyPairGenerator keyPairGenerator = KeyPairGenerator.getInstance("EC");
-            keyPairGenerator.initialize(256);
-            KeyPair keyPair = keyPairGenerator.generateKeyPair();
-            ECPublicKey ecPublicKey = (ECPublicKey) keyPair.getPublic();
-            ECPrivateKey ecPrivateKey = (ECPrivateKey) keyPair.getPrivate();
-
-            // 2.执行签名
-            PKCS8EncodedKeySpec pkcs8EncodedKeySpec = new PKCS8EncodedKeySpec(ecPrivateKey.getEncoded());
-            KeyFactory keyFactory = KeyFactory.getInstance("EC");
-
-            PrivateKey privateKey = keyFactory.generatePrivate(pkcs8EncodedKeySpec);
-            Log.i("RxAndroid_md5.~",AESUtil.byte2Base64((md5(new String(privateKey.getEncoded())).getBytes())));
-            Log.i("RxAndroid_md5.~",new String(privateKey.getEncoded()));
-            Log.i("RxAndroid_58.~",Base58.encode(strs.getBytes()));
-            Log.i("RxAndroid_58.~",AESUtil.byte2Base64(strs.getBytes()));
-
-            Signature signature = Signature.getInstance("SHA1withECDSA");
-            signature.initSign(privateKey);
-
-            signature.update(str.getBytes());
-            byte[] sign = signature.sign();
-
-            // 验证签名
-            X509EncodedKeySpec x509EncodedKeySpec = new X509EncodedKeySpec(ecPublicKey.getEncoded());
-            keyFactory = KeyFactory.getInstance("EC");
-            PublicKey publicKey = keyFactory.generatePublic(x509EncodedKeySpec);
-            Log.i("RxAndroid_md5..",md5(Base58.encode(publicKey.getEncoded())));
-
-            signature = Signature.getInstance("SHA1withECDSA");
-            signature.initVerify(publicKey);
-            signature.update(str.getBytes());
-
-            boolean bool = signature.verify(sign);
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
+    private String getJson(String temp){
+        BrainKey brainKey1 = new BrainKey(temp, 0);
+        BrainKey brainKey2 = new BrainKey(temp, 1);
+        String ownerAddress = brainKey1.getPublicAddress(Address.BITSHARES_PREFIX).toString();
+        String activeAddress = brainKey2.getPublicAddress(Address.BITSHARES_PREFIX).toString();
+        CreateUserNameBean bean = new CreateUserNameBean();
+        bean.setName(temp);
+        bean.setOwner_key(ownerAddress);
+        bean.setActive_key(activeAddress);
+        bean.setMemo_key(activeAddress);
+        bean.setRefcode("");
+        bean.setReferrer("");
+        Gson gson = new Gson().newBuilder().serializeNulls().create();
+        String json = gson.toJson(bean);
+        Log.i("RxAndroid", json);
+        return json;
     }
-    public static String md5(String string) {
-        if (TextUtils.isEmpty(string)) {
-            return "";
+    private Handler handler=new Handler(){
+        @Override
+        public void handleMessage(Message msg) {
+            super.handleMessage(msg);
+            Toast.makeText(CreateUserActivity.this,"账户已经存在", Toast.LENGTH_SHORT).show();
         }
-        MessageDigest md5 = null;
-        try {
-            md5 = MessageDigest.getInstance("MD5");
-            byte[] bytes = md5.digest(string.getBytes());
-            StringBuilder result = new StringBuilder();
-            for (byte b : bytes) {
-                String temp = Integer.toHexString(b & 0xff);
-                if (temp.length() == 1) {
-                    temp = "0" + temp;
-                }
-                result.append(temp);
-            }
-            return result.toString();
-        } catch (NoSuchAlgorithmException e) {
-            e.printStackTrace();
-        }
-        return "";
-    }
+    };
 
-    public void test(String json) {
-        MediaType mediaType = MediaType.parse("application/json; charset=utf-8");
+    public void CheckUserName2(String json) {
+        MediaType mediaType = MediaType.parse("application/json;charset=utf-8");
         Request request = new Request.Builder()
                 .url("https://finchain-faucet.com/api/v1/accounts")
                 .post(RequestBody.create(mediaType, json))
@@ -245,13 +158,20 @@ public class CreateUserActivity extends AppCompatActivity {
 
             @Override
             public void onResponse(Call call, Response response) throws IOException {
-                Log.d("RxAndroid", "onResponse: " + response.body().string());
+                dialog.dismiss();
+                String data=response.body().string();
+                Log.i("RxAndroid", "onResponse: " + data);
+                if(data.contains("Account exists")){
+                    handler.sendEmptyMessage(0);
+                }else{
+                    //TODO  公钥是否需要存储？
+                    startActivity(new Intent(CreateUserActivity.this, CreatePasswordActivity.class));
+                }
             }
         });
     }
 
     //检查用户名是否存在。
-    //TODO 请求：检查用户名是否存在
     private void CheckUserName(String json) {
         RequestBody requestBody =
                 RequestBody.create(MediaType.parse("application/json; charset=utf-8"), json);

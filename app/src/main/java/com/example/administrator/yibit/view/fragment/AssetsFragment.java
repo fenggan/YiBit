@@ -22,7 +22,7 @@ import android.widget.PopupWindow;
 import android.widget.TextView;
 import com.example.administrator.yibit.R;
 import com.example.administrator.yibit.adapter.AssetsCurrencyAdapter;
-import com.example.administrator.yibit.adapter.AssetsCurrencyBean;
+import com.example.administrator.yibit.bean.AssetsCurrencyBean;
 import com.example.administrator.yibit.adapter.SlideAdapter;
 import com.example.administrator.yibit.bean.SlideBean;
 import com.example.administrator.yibit.util.ClipUtils;

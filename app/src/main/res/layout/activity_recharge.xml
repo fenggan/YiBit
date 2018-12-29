@@ -51,7 +51,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/tip_detail"
         android:layout_centerHorizontal="true"
-        android:background="@drawable/shape_cornor_red"
+        android:background="@drawable/shape_cornor_right_red"
         android:text="确定"
         android:textColor="#FFFFFF"
         android:textSize="16sp" />

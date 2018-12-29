@@ -18,15 +18,17 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name="com.example.administrator.yibit.view.activity.FirstInActivity">
+
+        </activity>
+
+        <activity android:name="com.example.administrator.yibit.MainActivity"
+            android:windowSoftInputMode="adjustPan|stateHidden"
+            android:launchMode="singleTask">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </activity>
-
-        <activity android:name="com.example.administrator.yibit.MainActivity"
-            android:launchMode="singleTask">
         </activity>
         <activity android:name="com.example.administrator.yibit.view.activity.CreateUserActivity"></activity>
         <activity android:name="com.example.administrator.yibit.view.activity.DisclaimerActivity"></activity>
@@ -40,7 +42,7 @@
         <activity android:name="com.example.administrator.yibit.view.activity.ImportWalletActivitiy"></activity>
         <activity android:name="com.example.administrator.yibit.view.activity.WalletActivity"></activity>
         <activity android:name="com.example.administrator.yibit.view.activity.UpdatePasswordActivity"></activity>
-        <activity android:name="com.example.administrator.yibit.view.activity.AssetsDetailActivity"></activity>
+        <activity android:name="com.example.administrator.yibit.view.activity.AssetsDetailActivity" android:windowSoftInputMode="stateHidden|adjustPan"></activity>
         <activity android:name="com.example.administrator.yibit.view.activity.RechargeActivity"></activity>
         <activity android:name="com.example.administrator.yibit.view.activity.RechargeAddressActivity"></activity>
         <activity android:name="com.example.administrator.yibit.view.activity.CashWithdrawalActivity"></activity>

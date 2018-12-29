@@ -6,4 +6,7 @@
     <string name="disclaimer_five">3.数字资产主要由投机者大量使用，零售和商业市场使用相对较少，数字资产交易存在极高风险，其全天不间断交易，没有涨跌限制，价格容易受庄家、全球政府政策的影响而大幅波动；</string>
     <string name="disclaimer_one">PenguinPlazaTechnologyLtd是一家根据塞舌尔共和国法律成立的公司，YIBITAIDEX是由该公司运营FinChain金融链网关(以下称“本网关”)，主访问入口为:www.yibit.org，YIBITAIDEX是一个在金融链平台为用户提供数字资产充提服务（以下称“该服务”或“服务”）的平台。为了本协议表述之方便，公司和该网关在本协议中合称使用“我们”或其他第一人称称呼。使用该服务的自然人或其他主体均为本网关的用户，本协议为表述之便利，以下使用“您”或其他第二人称。我们和您在本协议中合称为“双方”，我们或您单称为“一方”。</string>
 
+    <string name="buy">买入</string>
+    <string name="sell">卖出</string>
+
 </resources>

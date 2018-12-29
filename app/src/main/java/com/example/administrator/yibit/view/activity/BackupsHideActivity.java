@@ -7,7 +7,6 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
-import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
@@ -16,7 +15,6 @@ import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import com.example.administrator.yibit.R;
-import com.example.administrator.yibit.bean.PrivateKeyBean;
 import com.example.administrator.yibit.util.PhoneState;
 
 import org.greenrobot.eventbus.EventBus;
@@ -42,7 +40,6 @@ public class BackupsHideActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_backups_hide);
         ButterKnife.bind(this);
-        EventBus.getDefault().register(this);
     }
 
     @OnClick({R.id.back, R.id.next})
@@ -96,14 +93,8 @@ public class BackupsHideActivity extends AppCompatActivity {
         finish();
     }
 
-    @Subscribe(threadMode = ThreadMode.MAIN)
-    public void onEventMainThread(PrivateKeyBean bean) {
-        privateKey.setText(bean.getPrivateKey());
-    }
-
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        EventBus.getDefault().unregister(this);
     }
 }
