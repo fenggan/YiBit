@@ -10,6 +10,8 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 import com.example.administrator.yibit.R;
 import com.example.administrator.yibit.bean.TransferAccountRecordBean;
+import com.example.administrator.yibit.util.StringUtils;
+
 import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -35,7 +37,7 @@ public class TransferAccountRecordAdapter extends RecyclerView.Adapter<TransferA
     @Override
     public void onBindViewHolder(@NonNull MyHolder myHolder, int i) {
         myHolder.currencyName.setText(list.get(i).getForm());
-        myHolder.currencyTime.setText(list.get(i).getTime());
+        myHolder.currencyTime.setText((list.get(i).getTime()).replace("T"," "));
         double temp=list.get(i).getAsset().getAsset_num();
         if(temp>0){
             myHolder.currencyNumber.setText("+"+temp);

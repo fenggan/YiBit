@@ -29,7 +29,6 @@ public interface APIService {
 
     /**
      * 判断用户名是否存在
-     *
      * @return String
      */
     @POST("api/v1/accounts")
@@ -37,7 +36,6 @@ public interface APIService {
 
     /**
      * 获取用户信息
-     *
      * @param map
      * @return String
      */
@@ -47,7 +45,6 @@ public interface APIService {
 
     /**
      * 获取行情列表
-     *
      * @param map
      * @return
      */
@@ -57,7 +54,6 @@ public interface APIService {
 
     /**
      * 获取交易列表
-     *
      * @param map
      * @return
      */
@@ -67,7 +63,6 @@ public interface APIService {
 
     /**
      * 获取挂单列表
-     *
      * @param map
      * @return
      */
@@ -77,7 +72,6 @@ public interface APIService {
 
     /**
      * 获取资产信息（包含余额）
-     *
      * @param map
      * @return
      */
@@ -88,7 +82,6 @@ public interface APIService {
 
     /**
      * 获取生成二维码的地址
-     *
      * @param map
      * @return
      */
@@ -98,7 +91,6 @@ public interface APIService {
 
     /**
      * 生成二维码
-     *
      * @param body
      * @return
      */

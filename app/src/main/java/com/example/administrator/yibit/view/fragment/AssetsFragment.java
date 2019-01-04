@@ -10,6 +10,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -160,7 +161,7 @@ public class AssetsFragment extends Fragment implements SlideAdapter.SlideClickL
     public void onAssetsCurrencytClickListener(AccountInfoBean.AssetEntity bean, int position) {
         Intent intent=new Intent(getActivity(),AssetsDetailActivity.class);
         intent.putExtra("currency",bean.getAsset_id());
-        intent.putExtra("userName",Constact.account2);
+
         startActivity(intent);
     }
 

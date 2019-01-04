@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
@@ -13,9 +14,13 @@ import android.widget.ArrayAdapter;
 import android.widget.TextView;
 import com.example.administrator.yibit.Constact;
 import com.example.administrator.yibit.R;
+import com.example.administrator.yibit.adapter.TransactionRecordAdapter;
+import com.example.administrator.yibit.adapter.TransferAccountRecordAdapter;
 import com.example.administrator.yibit.bean.AssetsBean;
 import com.example.administrator.yibit.bean.BusGetBuySellListBean;
 import com.example.administrator.yibit.bean.BusSkipBean;
+import com.example.administrator.yibit.bean.TransactionRecordBean;
+import com.example.administrator.yibit.bean.TransferAccountRecordBean;
 import com.example.administrator.yibit.http.RetrofitUtils;
 import com.example.administrator.yibit.util.DoubleUtils;
 import org.greenrobot.eventbus.EventBus;
@@ -32,7 +37,7 @@ import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
 
-public class AssetsDetailActivity extends AppCompatActivity {
+public class AssetsDetailActivity extends AppCompatActivity implements TransactionRecordAdapter.TransactionRecordClickListener{
     @BindView(R.id.recycler)
     RecyclerView recyclerView;
     @BindView(R.id.total)
@@ -45,7 +50,6 @@ public class AssetsDetailActivity extends AppCompatActivity {
     TextView lock;
 
     private String currency;
-    private String userName;
     private RetrofitUtils retrofitUtils;
     private Map<String,String> map;
     private String []currencys;
@@ -64,7 +68,6 @@ public class AssetsDetailActivity extends AppCompatActivity {
         list=new ArrayList<>();
         currencys=getResources().getStringArray(R.array.alert_titles);
         currency=getIntent().getStringExtra("currency");
-        userName=getIntent().getStringExtra("userName");
         for(String temp:currencys){
             if(!temp.equals(currency)){
                 list.add(temp);
@@ -75,7 +78,7 @@ public class AssetsDetailActivity extends AppCompatActivity {
 
     private void initData(){
         map=new HashMap<>();
-        map.put("user",userName);
+        map.put("user",Constact.account2);
         map.put("asset","1.3.0");
         retrofitUtils=new RetrofitUtils(this,Constact.BaseUrl);
         retrofitUtils.getAPIService()
@@ -107,6 +110,39 @@ public class AssetsDetailActivity extends AppCompatActivity {
 
                          }
                      });
+        map = new HashMap<>();
+        map.put("user", Constact.account2);
+        map.put("asset",currency);
+        retrofitUtils = new RetrofitUtils(this, Constact.BaseUrl);
+        retrofitUtils.getAPIService()
+                .getTransferAccountRecord(map)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Observer<TransferAccountRecordBean>() {
+                    @Override
+                    public void onSubscribe(Disposable d) {
+
+                    }
+
+                    @Override
+                    public void onNext(TransferAccountRecordBean bean) {
+                        recyclerView.setLayoutManager(new LinearLayoutManager(AssetsDetailActivity.this));
+                        TransactionRecordAdapter adapter = new TransactionRecordAdapter(AssetsDetailActivity.this, bean.getData());
+                        adapter.setTransactionRecordListener(AssetsDetailActivity.this);
+                        recyclerView.setAdapter(adapter);
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        Log.i("Rxx",e.getMessage());
+
+                    }
+
+                    @Override
+                    public void onComplete() {
+
+                    }
+                });
 
     }
     @OnClick({R.id.back, R.id.transaction, R.id.transfer, R.id.recharge, R.id.cash})
@@ -162,5 +198,11 @@ public class AssetsDetailActivity extends AppCompatActivity {
                 });
         dialog=builder.create();
         dialog.show();
+    }
+
+
+    @Override
+    public void onTransactionRecordClickListener(TransferAccountRecordBean.DataEntity bean, int position) {
+
     }
 }

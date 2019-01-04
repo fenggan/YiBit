@@ -1,6 +1,7 @@
 package com.example.administrator.yibit.adapter;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -13,6 +14,8 @@ import android.widget.TextView;
 import com.example.administrator.yibit.R;
 import com.example.administrator.yibit.bean.SlideBean;
 import com.example.administrator.yibit.bean.TransactionRecordBean;
+import com.example.administrator.yibit.bean.TransferAccountRecordBean;
+import com.example.administrator.yibit.util.StringUtils;
 
 import org.w3c.dom.Text;
 
@@ -25,9 +28,9 @@ public class TransactionRecordAdapter extends RecyclerView.Adapter<TransactionRe
 
     private TransactionRecordClickListener listener;
     private Context context;
-    private List<TransactionRecordBean> list;
+    private List<TransferAccountRecordBean.DataEntity> list;
 
-    public TransactionRecordAdapter(Context context, List<TransactionRecordBean> list) {
+    public TransactionRecordAdapter(Context context, List<TransferAccountRecordBean.DataEntity> list) {
         this.context = context;
         this.list = list;
     }
@@ -41,6 +44,18 @@ public class TransactionRecordAdapter extends RecyclerView.Adapter<TransactionRe
 
     @Override
     public void onBindViewHolder(@NonNull MyHolder myHolder, int i) {
+        double num=list.get(i).getAsset().getAsset_num();
+        if(num>0){
+            myHolder.money.setText("+"+num);
+            myHolder.money.setTextColor(Color.parseColor("#5ADBB1"));
+        }else {
+            myHolder.money.setText("-"+num);
+            myHolder.money.setTextColor(Color.parseColor("#E3675C"));
+        }
+        myHolder.time.setText((list.get(i).getTime()).replace("T"," "));
+        myHolder.number.setText(list.get(i).getTransfer_id());
+
+
         myHolder.itemView.setOnClickListener(this);
         myHolder.itemView.setTag(i);
     }
@@ -76,7 +91,7 @@ public class TransactionRecordAdapter extends RecyclerView.Adapter<TransactionRe
     }
 
     public interface TransactionRecordClickListener {
-        void onTransactionRecordClickListener(TransactionRecordBean bean, int position);
+        void onTransactionRecordClickListener(TransferAccountRecordBean.DataEntity bean, int position);
     }
 
     public void setTransactionRecordListener(TransactionRecordClickListener listener) {
