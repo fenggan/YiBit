@@ -1,6 +1,6 @@
 package com.example.administrator.yibit.util;
 
-public class Base58 {
+public class Base58Utils {
     private static final char[] ALPHABET = "123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz"
             .toCharArray();
     private static final int BASE_58 = ALPHABET.length;
@@ -68,7 +68,7 @@ public class Base58 {
                 digit58 = INDEXES[c];
             }
             if (digit58 < 0) {
-                throw new RuntimeException("Not a Base58 input: " + input);
+                throw new RuntimeException("Not a Base58Utils input: " + input);
             }
 
             input58[i] = (byte) digit58;

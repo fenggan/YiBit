@@ -5,6 +5,15 @@ package com.example.administrator.yibit.http;
  * @since 2017/2/13
  */
 
+import com.example.administrator.yibit.bean.AssetsBean;
+import com.example.administrator.yibit.bean.CreateQRAdressBean;
+import com.example.administrator.yibit.bean.OrderListBean;
+import com.example.administrator.yibit.bean.AccountInfoBean;
+import com.example.administrator.yibit.bean.BuySellBean;
+import com.example.administrator.yibit.bean.QuotationListBean;
+import com.example.administrator.yibit.bean.RechargeBean;
+import com.example.administrator.yibit.bean.TransferAccountRecordBean;
+
 import java.util.Map;
 
 import io.reactivex.Observable;
@@ -12,42 +21,96 @@ import okhttp3.RequestBody;
 import retrofit2.http.Body;
 import retrofit2.http.FieldMap;
 import retrofit2.http.FormUrlEncoded;
+import retrofit2.http.GET;
+import retrofit2.http.HeaderMap;
 import retrofit2.http.POST;
 
-/**
- *
- * @GET 表明这是get请求
- * @POST 表明这是post请求
- * @PUT 表明这是put请求
- * @DELETE 表明这是delete请求
- * @PATCH 表明这是一个patch请求，该请求是对put请求的补充，用于更新局部资源
- * @HEAD 表明这是一个head请求
- * @OPTIONS 表明这是一个option请求
- * @HTTP 通用注解, 可以替换以上所有的注解，其拥有三个属性：method，path，hasBody
- * @Headers 用于添加固定请求头，可以同时添加多个。通过该注解添加的请求头不会相互覆盖，而是共同存在
- * @Header 作为方法的参数传入，用于添加不固定值的Header，该注解会更新已有的请求头
- * @Body 多用于post请求发送非表单数据, 比如想要以post方式传递json格式数据
- * @Filed 多用于post请求中表单字段, Filed和FieldMap需要FormUrlEncoded结合使用
- * @FiledMap 和@Filed作用一致，用于不确定表单参数
- * @Part 用于表单字段, Part和PartMap与Multipart注解结合使用, 适合文件上传的情况
- * @PartMap 用于表单字段, 默认接受的类型是Map<String,REquestBody>，可用于实现多文件上传
- * <p>
- * Part标志上文的内容可以是富媒体形势，比如上传一张图片，上传一段音乐，即它多用于字节流传输。
- * 而Filed则相对简单些，通常是字符串键值对。
- * </p>
- * Part标志上文的内容可以是富媒体形势，比如上传一张图片，上传一段音乐，即它多用于字节流传输。
- * 而Filed则相对简单些，通常是字符串键值对。
- * @Path 用于url中的占位符,{占位符}和PATH只用在URL的path部分，url中的参数使用Query和QueryMap代替，保证接口定义的简洁
- * @Query 用于Get中指定参数
- * @QueryMap 和Query使用类似
- * @Url 指定请求路径
- */
 public interface APIService {
 
     /**
      * 判断用户名是否存在
-     * @return Boolean
+     *
+     * @return String
      */
-    @POST("/api/v1/accounts")
+    @POST("api/v1/accounts")
     Observable<String> register(@Body RequestBody body);
+
+    /**
+     * 获取用户信息
+     *
+     * @param map
+     * @return String
+     */
+    @FormUrlEncoded
+    @POST("get_accountinfo.php")
+    Observable<AccountInfoBean> getAcounntInfo(@FieldMap Map<String, String> map);
+
+    /**
+     * 获取行情列表
+     *
+     * @param map
+     * @return
+     */
+    @FormUrlEncoded
+    @POST("quotes.php")
+    Observable<QuotationListBean> getquotationList(@FieldMap Map<String, String> map);
+
+    /**
+     * 获取交易列表
+     *
+     * @param map
+     * @return
+     */
+    @FormUrlEncoded
+    @POST("exchange.php")
+    Observable<BuySellBean> getTransactionList(@FieldMap Map<String, String> map);
+
+    /**
+     * 获取挂单列表
+     *
+     * @param map
+     * @return
+     */
+    @FormUrlEncoded
+    @POST("limit_order.php")
+    Observable<OrderListBean> getOrderList(@FieldMap Map<String, String> map);
+
+    /**
+     * 获取资产信息（包含余额）
+     *
+     * @param map
+     * @return
+     */
+    @FormUrlEncoded
+    @POST("one_asset.php")
+    Observable<AssetsBean> getAssets(@FieldMap Map<String, String> map);
+
+
+    /**
+     * 获取生成二维码的地址
+     *
+     * @param map
+     * @return
+     */
+    @GET("BtsAccountRegisterManages/findOne")
+    Observable<RechargeBean> getQRAdress(@HeaderMap Map<String, String> map);
+
+
+    /**
+     * 生成二维码
+     *
+     * @param body
+     * @return
+     */
+    @POST("BtsAccountRegisterManages/registerDepositAccount")
+    Observable<CreateQRAdressBean> createQRAdress(@Body RequestBody body);
+
+    /**
+     *  获取转账记录
+     * @param map
+     * @return
+     */
+    @FormUrlEncoded
+    @POST("transfer.php")
+    Observable<TransferAccountRecordBean> getTransferAccountRecord(@FieldMap Map<String, String> map);
 }

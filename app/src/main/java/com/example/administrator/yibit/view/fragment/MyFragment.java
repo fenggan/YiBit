@@ -10,6 +10,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.example.administrator.yibit.Constact;
 import com.example.administrator.yibit.R;
 import com.example.administrator.yibit.view.activity.TransactionRecordActivity;
 import com.example.administrator.yibit.view.activity.WalletManagerActivity;
@@ -36,7 +38,7 @@ public class MyFragment extends Fragment {
         return view;
     }
     public void initData(){
-        //TODO 设置头像.用户名
+        userName.setText(Constact.account2);
     }
 
     @OnClick({R.id.transaction_record,R.id.wallet_manager})

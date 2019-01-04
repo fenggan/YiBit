@@ -10,7 +10,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.administrator.yibit.R;
-import com.example.administrator.yibit.bean.AssetsCurrencyBean;
+import com.example.administrator.yibit.bean.AccountInfoBean;
 
 import java.util.List;
 
@@ -21,9 +21,9 @@ public class AssetsCurrencyAdapter extends RecyclerView.Adapter<AssetsCurrencyAd
 
     private AssetsCurrencyClickListener listener;
     private Context context;
-    private List<AssetsCurrencyBean> list;
+    private List<AccountInfoBean.AssetEntity> list;
 
-    public AssetsCurrencyAdapter(Context context, List<AssetsCurrencyBean> list) {
+    public AssetsCurrencyAdapter(Context context, List<AccountInfoBean.AssetEntity> list) {
         this.context = context;
         this.list = list;
     }
@@ -37,6 +37,10 @@ public class AssetsCurrencyAdapter extends RecyclerView.Adapter<AssetsCurrencyAd
 
     @Override
     public void onBindViewHolder(@NonNull MyHolder myHolder, int i) {
+        myHolder.type.setText(list.get(i).getAsset_id());
+        myHolder.moneyOne.setText(list.get(i).getAmount()+"");
+        myHolder.moneyTwo.setText("---");
+
         myHolder.itemView.setOnClickListener(this);
         myHolder.itemView.setTag(i);
     }
@@ -44,7 +48,7 @@ public class AssetsCurrencyAdapter extends RecyclerView.Adapter<AssetsCurrencyAd
 
     @Override
     public int getItemCount() {
-        return 0;
+        return list.size();
     }
 
     @Override
@@ -70,7 +74,7 @@ public class AssetsCurrencyAdapter extends RecyclerView.Adapter<AssetsCurrencyAd
     }
 
     public interface AssetsCurrencyClickListener {
-        void onAssetsCurrencytClickListener(AssetsCurrencyBean bean, int position);
+        void onAssetsCurrencytClickListener(AccountInfoBean.AssetEntity bean, int position);
     }
 
     public void setAssetsCurrencytListener(AssetsCurrencyClickListener listener) {

@@ -20,26 +20,40 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import com.example.administrator.yibit.Constact;
 import com.example.administrator.yibit.R;
 import com.example.administrator.yibit.adapter.AssetsCurrencyAdapter;
-import com.example.administrator.yibit.bean.AssetsCurrencyBean;
+import com.example.administrator.yibit.bean.AccountInfoBean;
 import com.example.administrator.yibit.adapter.SlideAdapter;
 import com.example.administrator.yibit.bean.SlideBean;
+import com.example.administrator.yibit.http.RetrofitUtils;
 import com.example.administrator.yibit.util.ClipUtils;
-import com.example.administrator.yibit.util.PhoneState;
+import com.example.administrator.yibit.util.KeyboardUtils;
+import com.example.administrator.yibit.util.PhoneStateUtils;
 import com.example.administrator.yibit.util.QRCodeUtils;
 import com.example.administrator.yibit.view.activity.AssetsDetailActivity;
 import com.example.administrator.yibit.view.activity.CreateUserActivity;
 import com.example.administrator.yibit.view.activity.ImportWalletActivitiy;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import butterknife.Unbinder;
+import io.reactivex.Observer;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.disposables.Disposable;
+import io.reactivex.schedulers.Schedulers;
 
 public class AssetsFragment extends Fragment implements SlideAdapter.SlideClickListener,AssetsCurrencyAdapter.AssetsCurrencyClickListener {
 
     private Unbinder unbinder;
+    private RetrofitUtils retrofitUtils;
+    private Map<String,String> map;
 
     @BindView(R.id.money_one)
     TextView moneyOne;
@@ -66,6 +80,7 @@ public class AssetsFragment extends Fragment implements SlideAdapter.SlideClickL
         View view = getLayoutInflater().inflate(R.layout.fragment_assets, container, false);
         unbinder = ButterKnife.bind(this, view);
         init();
+        initData();
         return view;
     }
 
@@ -75,10 +90,41 @@ public class AssetsFragment extends Fragment implements SlideAdapter.SlideClickL
         slideRecycler.setLayoutManager(new LinearLayoutManager(getActivity()));
         slideRecycler.setAdapter(slideAdapter);
 
-        AssetsCurrencyAdapter assetsCurrencyAdapter = new AssetsCurrencyAdapter(getActivity(), new ArrayList<AssetsCurrencyBean>());
-        assetsCurrencyAdapter.setAssetsCurrencytListener(this);
-        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-        recyclerView.setAdapter(assetsCurrencyAdapter);
+
+    }
+    private void initData(){
+        map =new HashMap<>();
+        map.put("user",Constact.account2);
+        retrofitUtils=new RetrofitUtils(getActivity(),Constact.BaseUrl);
+        retrofitUtils.getAPIService()
+                .getAcounntInfo(map)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Observer<AccountInfoBean>() {
+                    @Override
+                    public void onSubscribe(Disposable d) {
+
+                    }
+
+                    @Override
+                    public void onNext(AccountInfoBean s) {
+                        userName.setText(s.getUsername());
+                        AssetsCurrencyAdapter assetsCurrencyAdapter = new AssetsCurrencyAdapter(getActivity(), s.getAsset());
+                        assetsCurrencyAdapter.setAssetsCurrencytListener(AssetsFragment.this);
+                        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+                        recyclerView.setAdapter(assetsCurrencyAdapter);
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+
+                    }
+
+                    @Override
+                    public void onComplete() {
+
+                    }
+                });
     }
 
     @OnClick({R.id.create_wallet, R.id.import_wallet, R.id.side_slide,R.id.username})
@@ -94,9 +140,7 @@ public class AssetsFragment extends Fragment implements SlideAdapter.SlideClickL
                 drawerLayout.openDrawer(Gravity.RIGHT);
                 break;
             case R.id.username:
-//                showPopWindow("1234");
-                Intent intent=new Intent(getActivity(),AssetsDetailActivity.class);
-                startActivity(intent);
+                showPopWindow(Constact.account2);
                 break;
         }
     }
@@ -109,13 +153,14 @@ public class AssetsFragment extends Fragment implements SlideAdapter.SlideClickL
 
     @Override
     public void onSlideClickListener(SlideBean bean, int position) {
-        //TODO 通知资产页面刷新相关的数据。
+
     }
 
     @Override
-    public void onAssetsCurrencytClickListener(AssetsCurrencyBean bean, int position) {
-        //TODO 传递数据到资产详情页面
+    public void onAssetsCurrencytClickListener(AccountInfoBean.AssetEntity bean, int position) {
         Intent intent=new Intent(getActivity(),AssetsDetailActivity.class);
+        intent.putExtra("currency",bean.getAsset_id());
+        intent.putExtra("userName",Constact.account2);
         startActivity(intent);
     }
 
@@ -128,17 +173,20 @@ public class AssetsFragment extends Fragment implements SlideAdapter.SlideClickL
         EditText number = view.findViewById(R.id.number);
         Button copy = view.findViewById(R.id.copy);
 
+        userName.setText(qrCode);
         Bitmap bitmap=QRCodeUtils.createQR(qrCode,1000,1000,null);
         qr.setBackground(new BitmapDrawable(bitmap));
         copy.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 ClipUtils.clipCopy(getActivity(),userName.getText().toString().trim());
+                Toast.makeText(getActivity(), "复制成功", Toast.LENGTH_SHORT).show();
             }
         });
         close.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                KeyboardUtils.hideKeyboard(v);
                 window.dismiss();
             }
         });
@@ -146,17 +194,21 @@ public class AssetsFragment extends Fragment implements SlideAdapter.SlideClickL
         window.setContentView(view);
         window.setOutsideTouchable(true);
         window.setFocusable(true);
-        window.setWidth(PhoneState.getScreenWidth(getActivity()));
-        window.setHeight(PhoneState.getScreenHeight(getActivity()));
+        window.setWidth(PhoneStateUtils.getScreenWidth(getActivity()));
+        window.setHeight(PhoneStateUtils.getScreenHeight(getActivity()));
         window.setOnDismissListener(new PopupWindow.OnDismissListener() {
             @Override
             public void onDismiss() {
-                PhoneState.setBackgroundAlpha(getActivity(),1);
+                PhoneStateUtils.setBackgroundAlpha(getActivity(),1);
             }
         });
         window.setBackgroundDrawable(getResources().getDrawable(R.drawable.shape_cornor_white));
         window.showAtLocation(root,Gravity.BOTTOM,0,0);
-        PhoneState.setBackgroundAlpha(getActivity(),0.5f);
+        PhoneStateUtils.setBackgroundAlpha(getActivity(),0.5f);
     }
 
+    @Override
+    public void setUserVisibleHint(boolean isVisibleToUser) {
+        super.setUserVisibleHint(isVisibleToUser);
+    }
 }

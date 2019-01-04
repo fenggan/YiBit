@@ -15,11 +15,7 @@ import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import com.example.administrator.yibit.R;
-import com.example.administrator.yibit.util.PhoneState;
-
-import org.greenrobot.eventbus.EventBus;
-import org.greenrobot.eventbus.Subscribe;
-import org.greenrobot.eventbus.ThreadMode;
+import com.example.administrator.yibit.util.PhoneStateUtils;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -80,12 +76,12 @@ public class BackupsHideActivity extends AppCompatActivity {
         window.setOnDismissListener(new PopupWindow.OnDismissListener() {
             @Override
             public void onDismiss() {
-                PhoneState.setBackgroundAlpha(BackupsHideActivity.this,1);
+                PhoneStateUtils.setBackgroundAlpha(BackupsHideActivity.this,1);
             }
         });
         window.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#FFFFFF")));
         window.showAsDropDown(root);
-        PhoneState.setBackgroundAlpha(BackupsHideActivity.this,0.5f);
+        PhoneStateUtils.setBackgroundAlpha(BackupsHideActivity.this,0.5f);
     }
         @Override
     public void onBackPressed() {

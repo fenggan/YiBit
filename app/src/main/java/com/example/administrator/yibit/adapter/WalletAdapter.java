@@ -43,7 +43,7 @@ public class WalletAdapter extends RecyclerView.Adapter<WalletAdapter.MyHolder> 
 
     @Override
     public int getItemCount() {
-        return 0;
+        return list.size();
     }
 
     @Override

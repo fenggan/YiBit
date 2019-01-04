@@ -1,5 +1,6 @@
 package com.example.administrator.yibit;
 
+import android.Manifest;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -13,10 +14,13 @@ import android.widget.TextView;
 
 import com.example.administrator.yibit.adapter.HomePagerAdapter;
 import com.example.administrator.yibit.bean.BusSkipBean;
+import com.example.administrator.yibit.util.StringUtils;
 import com.example.administrator.yibit.view.fragment.AssetsFragment;
 import com.example.administrator.yibit.view.fragment.MyFragment;
 import com.example.administrator.yibit.view.fragment.QuotationFragment;
 import com.example.administrator.yibit.view.fragment.TransactionFragment;
+import com.tbruyelle.rxpermissions2.Permission;
+import com.tbruyelle.rxpermissions2.RxPermissions;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
@@ -28,6 +32,7 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import io.reactivex.functions.Consumer;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -70,6 +75,7 @@ public class MainActivity extends AppCompatActivity {
         HomePagerAdapter adapter = new HomePagerAdapter(getSupportFragmentManager(), fragments);
         viewPager.setCurrentItem(0);
         viewPager.setAdapter(adapter);
+        viewPager.setOffscreenPageLimit(4);
     }
 
     private void initData() {

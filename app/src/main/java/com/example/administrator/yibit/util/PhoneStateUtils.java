@@ -4,7 +4,7 @@ import android.app.Activity;
 import android.util.DisplayMetrics;
 import android.view.WindowManager;
 
-public class PhoneState {
+public class PhoneStateUtils {
     /**
      *
      * @param activity

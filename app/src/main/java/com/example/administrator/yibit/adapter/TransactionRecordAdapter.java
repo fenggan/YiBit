@@ -48,7 +48,7 @@ public class TransactionRecordAdapter extends RecyclerView.Adapter<TransactionRe
 
     @Override
     public int getItemCount() {
-        return 0;
+        return list.size();
     }
 
     @Override

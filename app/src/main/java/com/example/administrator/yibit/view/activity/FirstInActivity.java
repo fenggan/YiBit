@@ -36,7 +36,6 @@ public class FirstInActivity extends AppCompatActivity{
     public void onClick(View view){
         switch(view.getId()){
             case R.id.create:
-                //TODO  跳转之后没有关闭页面。
                 startActivity(new Intent(this,CreateUserActivity.class));
                 break;
             case R.id.join:

@@ -15,7 +15,7 @@ import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 import com.example.administrator.yibit.R;
-import com.example.administrator.yibit.util.PhoneState;
+import com.example.administrator.yibit.util.PhoneStateUtils;
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
@@ -102,12 +102,12 @@ public class TransferActivity extends AppCompatActivity {
         window.setOnDismissListener(new PopupWindow.OnDismissListener() {
             @Override
             public void onDismiss() {
-//                PhoneState.setBackgroundAlpha(TransferActivity.this,1);
+//                PhoneStateUtils.setBackgroundAlpha(TransferActivity.this,1);
             }
         });
         window.setBackgroundDrawable(getResources().getDrawable(R.drawable.shape_cornor_white));
         window.showAtLocation(root,Gravity.BOTTOM,0,0);
-        PhoneState.setBackgroundAlpha(this,0.5f);
+        PhoneStateUtils.setBackgroundAlpha(this,0.5f);
     }
 
     private void showPasswordWindow() {
@@ -135,12 +135,12 @@ public class TransferActivity extends AppCompatActivity {
         window.setOnDismissListener(new PopupWindow.OnDismissListener() {
             @Override
             public void onDismiss() {
-                PhoneState.setBackgroundAlpha(TransferActivity.this,1);
+                PhoneStateUtils.setBackgroundAlpha(TransferActivity.this,1);
             }
         });
         window.setBackgroundDrawable(getResources().getDrawable(R.drawable.shape_cornor_white));
         window.showAsDropDown(root);
-        PhoneState.setBackgroundAlpha(this,0.5f);
+        PhoneStateUtils.setBackgroundAlpha(this,0.5f);
     }
 
     @Subscribe(threadMode = ThreadMode.MAIN)

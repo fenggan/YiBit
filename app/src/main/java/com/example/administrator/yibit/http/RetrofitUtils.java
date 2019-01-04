@@ -9,9 +9,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class RetrofitUtils {
     private static final int DEFAULT_TIME_OUT = 10;
-
     private Context context;
-
     private static String baseUrl;
 
     public RetrofitUtils(Context context, String baseUrl){
@@ -19,7 +17,7 @@ public class RetrofitUtils {
         this.baseUrl = baseUrl;
     }
 
-    public  Retrofit getRetrofit() {
+    private  Retrofit getRetrofit() {
         return new Retrofit.Builder()
                 .baseUrl(baseUrl)
                 .addConverterFactory(GsonConverterFactory.create())
@@ -27,7 +25,7 @@ public class RetrofitUtils {
                 .client(getOkHttpClient())
                 .build();
     }
-    public  OkHttpClient getOkHttpClient(){
+    private  OkHttpClient getOkHttpClient(){
         return new OkHttpClient.Builder()
                 .connectTimeout(DEFAULT_TIME_OUT, TimeUnit.SECONDS)
                 .readTimeout(DEFAULT_TIME_OUT, TimeUnit.SECONDS)

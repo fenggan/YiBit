@@ -41,9 +41,11 @@
         <ImageView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
             android:src="@drawable/success" />
 
         <TextView
+            android:id="@+id/money"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
@@ -62,7 +64,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
                 android:layout_weight="1"
-                android:padding="20dp"
+                android:padding="15dp"
                 android:text="发送账号"
                 android:textColor="#A5A5A5"
                 android:textSize="14sp" />
@@ -74,10 +76,17 @@
                 android:layout_marginRight="20dp"
                 android:layout_weight="1"
                 android:gravity="right"
-                android:padding="20dp"
+                android:padding="15dp"
                 android:textColor="#272729"
                 android:textSize="14sp" />
         </LinearLayout>
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp"
+            android:src="#EFEFEF" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -89,7 +98,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
                 android:layout_weight="1"
-                android:padding="20dp"
+                android:padding="15dp"
                 android:text="接收账号"
                 android:textColor="#A5A5A5"
                 android:textSize="14sp" />
@@ -101,10 +110,17 @@
                 android:layout_marginRight="20dp"
                 android:layout_weight="1"
                 android:gravity="right"
-                android:padding="20dp"
+                android:padding="15dp"
                 android:textColor="#272729"
                 android:textSize="14sp" />
         </LinearLayout>
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp"
+            android:src="#EFEFEF" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -116,7 +132,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
                 android:layout_weight="1"
-                android:padding="20dp"
+                android:padding="15dp"
                 android:text="手续费"
                 android:textColor="#A5A5A5"
                 android:textSize="14sp" />
@@ -128,10 +144,17 @@
                 android:layout_marginRight="20dp"
                 android:layout_weight="1"
                 android:gravity="right"
-                android:padding="20dp"
+                android:padding="15dp"
                 android:textColor="#272729"
                 android:textSize="14sp" />
         </LinearLayout>
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp"
+            android:src="#EFEFEF" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -143,7 +166,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
                 android:layout_weight="1"
-                android:padding="20dp"
+                android:padding="15dp"
                 android:text="备注(MEMO)"
                 android:textColor="#A5A5A5"
                 android:textSize="14sp" />
@@ -155,18 +178,18 @@
                 android:layout_marginRight="20dp"
                 android:layout_weight="1"
                 android:gravity="right"
-                android:padding="20dp"
+                android:padding="15dp"
                 android:textColor="#272729"
                 android:textSize="14sp" />
         </LinearLayout>
 
         <ImageView
-            android:layerType="software"
-            android:layout_marginLeft="30dp"
-            android:layout_marginRight="30dp"
             android:layout_width="match_parent"
             android:layout_height="10dp"
-            android:background="@drawable/shape_line_dashed_gray" />
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp"
+            android:background="@drawable/shape_line_dashed_gray"
+            android:layerType="software" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -178,7 +201,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
                 android:layout_weight="1"
-                android:padding="20dp"
+                android:padding="15dp"
                 android:text="交易号"
                 android:textColor="#A5A5A5"
                 android:textSize="14sp" />
@@ -190,10 +213,17 @@
                 android:layout_marginRight="20dp"
                 android:layout_weight="1"
                 android:gravity="right"
-                android:padding="20dp"
+                android:padding="15dp"
                 android:textColor="#73B3B5"
                 android:textSize="14sp" />
         </LinearLayout>
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp"
+            android:src="#EFEFEF" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -205,7 +235,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
                 android:layout_weight="1"
-                android:padding="20dp"
+                android:padding="15dp"
                 android:text="区块"
                 android:textColor="#A5A5A5"
                 android:textSize="14sp" />
@@ -217,10 +247,17 @@
                 android:layout_marginRight="20dp"
                 android:layout_weight="1"
                 android:gravity="right"
-                android:padding="20dp"
+                android:padding="15dp"
                 android:textColor="#272729"
                 android:textSize="14sp" />
         </LinearLayout>
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp"
+            android:src="#EFEFEF" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -232,7 +269,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
                 android:layout_weight="1"
-                android:padding="20dp"
+                android:padding="15dp"
                 android:text="交易时间"
                 android:textColor="#A5A5A5"
                 android:textSize="14sp" />
@@ -242,9 +279,9 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginRight="20dp"
-                android:layout_weight="1"
+                android:layout_weight="2"
                 android:gravity="right"
-                android:padding="20dp"
+                android:padding="15dp"
                 android:textColor="#272729"
                 android:textSize="14sp" />
         </LinearLayout>

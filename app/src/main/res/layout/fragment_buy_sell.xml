@@ -67,8 +67,7 @@
                 android:layout_below="@id/line_one"
                 android:layout_margin="10dp"
                 android:gravity="center_horizontal"
-                android:text="1231"
-                android:textColor="#E3675C"
+                android:textColor="#5ADBBC"
                 android:textSize="14sp" />
 
             <ImageView
@@ -294,15 +293,15 @@
                 android:textSize="20sp" />
 
             <TextView
-                android:gravity="center"
                 android:id="@+id/no_state"
-                android:textSize="14sp"
-                android:textColor="#D6D6D6"
-                android:text="暂无记录"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:drawableTop="@drawable/no_state" />
+                android:drawableTop="@drawable/no_state"
+                android:gravity="center"
+                android:text="暂无记录"
+                android:textColor="#D6D6D6"
+                android:textSize="14sp" />
 
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/recycler_three"

@@ -20,8 +20,13 @@ import android.widget.Toast;
 
 import com.example.administrator.yibit.R;
 import com.example.administrator.yibit.adapter.BuySellAdapter;
+import com.example.administrator.yibit.bean.BusGetBuySellListBean;
 import com.example.administrator.yibit.widget.AmountView;
 import com.example.administrator.yibit.widget.NoScrollViewpager;
+
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -49,6 +54,7 @@ public class TransactionFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view=getLayoutInflater().inflate(R.layout.fragment_transaction,container,false);
         unbinder=ButterKnife.bind(this,view);
+        EventBus.getDefault().register(this);
         initData();
         return view;
     }
@@ -59,6 +65,7 @@ public class TransactionFragment extends Fragment {
         init();
     }
     private void init(){
+        choose.setText("ETC/JRC");
         viewPager.setAdapter(new BuySellAdapter(getChildFragmentManager(),fragments));
         viewPager.setCurrentItem(0);
     }
@@ -67,6 +74,11 @@ public class TransactionFragment extends Fragment {
     public void onDestroyView() {
         super.onDestroyView();
         unbinder.unbind();
+        EventBus.getDefault().unregister(this);
+    }
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void onEventMainThread(BusGetBuySellListBean bean){
+        choose.setText(bean.getOne()+"/"+bean.getTwo());
     }
 
 
@@ -94,12 +106,6 @@ public class TransactionFragment extends Fragment {
                 //k线图界面
                 break;
         }
-    }
-
-    @Override
-    public void setUserVisibleHint(boolean isVisibleToUser) {
-        super.setUserVisibleHint(isVisibleToUser);
-        //TODO 请求页面相关的数据。
     }
 
     //弹出选择货币的窗口。

@@ -25,11 +25,11 @@
 
     </android.support.design.widget.TabLayout>
 
-    <android.support.v4.view.ViewPager
+    <com.example.administrator.yibit.widget.NoScrollViewpager
         android:id="@+id/viewpager"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1">
 
-    </android.support.v4.view.ViewPager>
+    </com.example.administrator.yibit.widget.NoScrollViewpager>
 </LinearLayout>

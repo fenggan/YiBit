@@ -18,15 +18,19 @@ import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+
 import com.example.administrator.yibit.Constact;
 import com.example.administrator.yibit.R;
 import com.example.administrator.yibit.bean.CreateUserNameBean;
 import com.example.administrator.yibit.http.RetrofitUtils;
 import com.google.gson.Gson;
+
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
+
 import java.io.IOException;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -70,12 +74,13 @@ public class CreateUserActivity extends AppCompatActivity {
         initView();
         aaa();
     }
-    private void aaa(){
+
+    private void aaa() {
 
     }
 
     private void init() {
-        retrofitUtils = new RetrofitUtils(this, Constact.baseUrl);
+        retrofitUtils = new RetrofitUtils(this, Constact.grapheneBaseUrl);
     }
 
     private void initView() {
@@ -118,13 +123,15 @@ public class CreateUserActivity extends AppCompatActivity {
                 break;
         }
     }
-    private String getJson(String temp){
-        BrainKey brainKey1 = new BrainKey(temp, 0);
-        BrainKey brainKey2 = new BrainKey(temp, 1);
+
+    private String getJson(String username) {
+        BrainKey brainKey1 = new BrainKey(username, 0);
+        BrainKey brainKey2 = new BrainKey(username, 1);
         String ownerAddress = brainKey1.getPublicAddress(Address.BITSHARES_PREFIX).toString();
         String activeAddress = brainKey2.getPublicAddress(Address.BITSHARES_PREFIX).toString();
+//        brainKey1.getPrivateKey().decompress();
         CreateUserNameBean bean = new CreateUserNameBean();
-        bean.setName(temp);
+        bean.setName(username);
         bean.setOwner_key(ownerAddress);
         bean.setActive_key(activeAddress);
         bean.setMemo_key(activeAddress);
@@ -135,14 +142,16 @@ public class CreateUserActivity extends AppCompatActivity {
         Log.i("RxAndroid", json);
         return json;
     }
-    private Handler handler=new Handler(){
+
+    private Handler handler = new Handler() {
         @Override
         public void handleMessage(Message msg) {
             super.handleMessage(msg);
-            Toast.makeText(CreateUserActivity.this,"账户已经存在", Toast.LENGTH_SHORT).show();
+            Toast.makeText(CreateUserActivity.this, "账户已经存在", Toast.LENGTH_SHORT).show();
         }
     };
 
+    //检查用户名是否存在。临时方案
     public void CheckUserName2(String json) {
         MediaType mediaType = MediaType.parse("application/json;charset=utf-8");
         Request request = new Request.Builder()
@@ -159,11 +168,11 @@ public class CreateUserActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call call, Response response) throws IOException {
                 dialog.dismiss();
-                String data=response.body().string();
+                String data = response.body().string();
                 Log.i("RxAndroid", "onResponse: " + data);
-                if(data.contains("Account exists")){
+                if (data.contains("Account exists")) {
                     handler.sendEmptyMessage(0);
-                }else{
+                } else {
                     //TODO  公钥是否需要存储？
                     startActivity(new Intent(CreateUserActivity.this, CreatePasswordActivity.class));
                 }
@@ -173,8 +182,7 @@ public class CreateUserActivity extends AppCompatActivity {
 
     //检查用户名是否存在。
     private void CheckUserName(String json) {
-        RequestBody requestBody =
-                RequestBody.create(MediaType.parse("application/json; charset=utf-8"), json);
+        RequestBody requestBody = RequestBody.create(MediaType.parse("application/json; charset=utf-8"), json);
         retrofitUtils.getAPIService()
                 .register(requestBody)
                 .subscribeOn(Schedulers.io())
@@ -182,16 +190,13 @@ public class CreateUserActivity extends AppCompatActivity {
                 .subscribe(new Observer<String>() {
                     @Override
                     public void onSubscribe(Disposable d) {
-                        Log.i("RxAndroid", "onSubscribe");
                     }
 
                     @Override
                     public void onNext(String str) {
                         Log.i("RxAndroid", str);
-//                        if (!aBoolean) {
-//                            dialog.dismiss();
-//                            startActivity(new Intent(CreateUserActivity.this, CreatePasswordActivity.class));
-//                        }
+                        dialog.dismiss();
+                        startActivity(new Intent(CreateUserActivity.this, CreatePasswordActivity.class));
                     }
 
                     @Override
@@ -201,7 +206,6 @@ public class CreateUserActivity extends AppCompatActivity {
 
                     @Override
                     public void onComplete() {
-                        Log.i("RxAndroid", "onComplete");
                     }
                 });
     }
